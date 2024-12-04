@@ -65,3 +65,7 @@ def conversor_view(request):
         'resultado': resultado_com_simbolo if resultado else None, 
         'erro': erro
     })
+
+def historico_view(request):
+    historico = Conversao.objects.all().order_by('-data')  # Ordena por data mais recente
+    return render(request, 'moedas/historico.html', {'historico': historico})

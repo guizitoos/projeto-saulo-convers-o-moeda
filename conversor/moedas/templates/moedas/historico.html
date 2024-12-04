@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Histórico de Conversões</title>
+</head>
+<body>
+    <h1>Histórico de Conversões</h1>
+    <table border="1">
+        <tr>
+            <th>Data</th>
+            <th>De (Moeda)</th>
+            <th>Para (Moeda)</th>
+            <th>Valor</th>
+            <th>Resultado</th>
+        </tr>
+        {% for conversao in historico %}
+        <tr>
+            <td>{{ conversao.data }}</td>
+            <td>{{ conversao.de_moeda }}</td>
+            <td>{{ conversao.para_moeda }}</td>
+            <td>{{ conversao.valor }}</td>
+            <td>{{ conversao.resultado }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Nenhuma conversão realizada ainda.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
