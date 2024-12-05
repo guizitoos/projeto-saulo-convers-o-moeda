@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversor de Moedas</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'moedas/styles.css' %}">
 </head>
 <body>
-    <h1>Conversor de Moedas</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Converter</button>
-    </form>
-
-    {% if resultado %}
-        <h2>Resultado: {{ resultado }}</h2>
-    {% endif %}
-    
-    {% if erro %}
-        <p style="color: red;">{{ erro }}</p>
-    {% endif %}
+   <div class="conversor-container">
+        <h1>Conversor de Moedas</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Converter</button>
+        </form>
+        {% if resultado %}
+            <h2>Resultado: {{ resultado }}</h2>
+        {% endif %}
+        {% if erro %}
+            <p style="color: red;">{{ erro }}</p>
+        {% endif %}
+        <a href="{% url 'historico' %}" class="btn btn-secondary">Ver Histórico de Conversões</a>
+    </div>
 </body>
 </html>

@@ -6,5 +6,4 @@ urlpatterns = [
     path('historico/', historico_view, name='historico'),
 ]
 
-
 #é para chamar o formulário de conversão

@@ -1,31 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Histórico de Conversões</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'moedas/styles.css' %}">
 </head>
 <body>
-    <h1>Histórico de Conversões</h1>
-    <table border="1">
-        <tr>
-            <th>Data</th>
-            <th>De (Moeda)</th>
-            <th>Para (Moeda)</th>
-            <th>Valor</th>
-            <th>Resultado</th>
-        </tr>
-        {% for conversao in historico %}
-        <tr>
-            <td>{{ conversao.data }}</td>
-            <td>{{ conversao.de_moeda }}</td>
-            <td>{{ conversao.para_moeda }}</td>
-            <td>{{ conversao.valor }}</td>
-            <td>{{ conversao.resultado }}</td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="5">Nenhuma conversão realizada ainda.</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="historico-container">
+        <h1>Histórico de Conversões</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>De (Moeda)</th>
+                    <th>Para (Moeda)</th>
+                    <th>Valor</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for conversao in historico %}
+                <tr>
+                    <td>{{ conversao.data|date:"M d, Y, H:i" }}</td>
+                    <td>{{ conversao.de_moeda }}</td>
+                    <td>{{ conversao.para_moeda }}</td>
+                    <td>{{ conversao.valor|floatformat:2 }}</td>
+                    <td>{{ conversao.resultado|floatformat:2 }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">Nenhuma conversão realizada até agora.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'conversor' %}" class="btn btn-secondary">Voltar</a>
+    </div>
 </body>
 </html>
